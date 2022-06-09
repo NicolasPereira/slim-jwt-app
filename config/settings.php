@@ -55,7 +55,7 @@ $settings['db'] = [
         'port' => 5432,
         'dbname' => 'slim_app',
         'user' => 'root',
-        'password' => '',
+        'password' => 'password',
         'charset' => 'utf-8'
     ]
 ];
