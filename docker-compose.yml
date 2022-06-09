@@ -17,11 +17,11 @@ services:
     volumes:
       - db-app:/var/lib/postgresql/data
     environment:
-      POSTGRES_PASSWORD:
+      POSTGRES_PASSWORD: password
       POSTGRES_USER: root
       POSTGRES_DB: slim_app
     ports:
-      - "54320:5432"
+      - "5432:5432"
 
   nginx:
     container_name: slim_nginx
