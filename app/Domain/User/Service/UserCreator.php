@@ -8,17 +8,18 @@ use App\Exception\ValidationException;
 
 final class UserCreator
 {
-    public function __construct(UserCreatorRepository $repository)
+    public function __construct()
     {
     }
 
     public function createUser(array $data): int
     {
         $this->validateUser($data);
+        //ainda falta criar a persistencia
+        //$userId = $this->repository->save($data);
+        //return $userId;
 
-        $userId = $this->repository->save($data);
-
-        return $userId;
+        return 0;
     }
 
     private function validateUser(): void
