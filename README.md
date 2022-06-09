@@ -4,7 +4,7 @@ Essa aplicação tem como foco o aprendizado do Framework Slim e também a utili
 
 ### Como rodar a Aplicação
 
-A aplicação está configurada com docker.
+A aplicação está configurada com docker e um servidor NGIX.
 
 ```shell
 docker-compose up -d -build
