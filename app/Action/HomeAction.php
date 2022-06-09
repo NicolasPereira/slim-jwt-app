@@ -11,12 +11,12 @@ final class HomeAction
         ServerRequestInterface $request,
         ResponseInterface $response
     ): ResponseInterface {
-        $result = ['error' => ['message' => 'Validation failed']];
+        $result = ['message' => 'Hello World'];
 
         $response->getBody()->write(json_encode($result));
 
         return $response
             ->withHeader('Content-Type', 'application/json')
-            ->withStatus(422);
+            ->withStatus(200);
     }
 }
