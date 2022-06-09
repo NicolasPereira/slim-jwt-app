@@ -32,7 +32,7 @@ $settings['error'] = [
 
 $settings['db'] = [
     'driver' => 'pgsql',
-    'host' => 'localhost',
+    'host' => 'slim_db',
     'username' => 'root',
     'database' => 'slim_app',
     'password' => '',
