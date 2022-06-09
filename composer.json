@@ -1,8 +1,11 @@
 {
     "require": {
-        "slim/slim": "4.*",
+        "doctrine/annotations": "^1.13",
+        "doctrine/orm": "*",
+        "php-di/php-di": "^6.4",
+        "selective/basepath": "^2.1",
         "slim/psr7": "^1.5",
-        "php-di/php-di": "^6.4"
+        "slim/slim": "4.*"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5"
