@@ -12,13 +12,9 @@ use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 
 class EntityManagerFactory
 {
-    public function __construct(private ContainerInterface $container)
+    public static function create( ContainerInterface $container): EntityManagerInterface
     {
-
-    }
-    public function create(): EntityManagerInterface
-    {
-        $settings = $this->container->get('settings')['db'];
+        $settings = $container->get('settings')['db'];
         $cache = $settings['dev_mode'] ?
             DoctrineProvider::wrap(new ArrayAdapter()) :
             DoctrineProvider::wrap(new FilesystemAdapter(directory: $settings['cache_dir']));
