@@ -1,7 +1,9 @@
 <?php
 
+use App\infrastructure\Factory\EntityManagerFactory;
 use Doctrine\Common\Cache\Psr6\DoctrineProvider;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Tools\Setup;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseFactoryInterface;
@@ -45,20 +47,7 @@ return [
         return new BasePathMiddleware($container->get(App::class));
     },
 
-   EntityManager::class => function (ContainerInterface $container): EntityManager {
-        $settings = $container->get('settings')['db'];
-
-        $cache = $settings['dev_mode'] ?
-            DoctrineProvider::wrap(new ArrayAdapter()) :
-            DoctrineProvider::wrap(new FilesystemAdapter(directory: $settings['cache_dir']));
-
-        $config = Setup::createAttributeMetadataConfiguration(
-            $settings['metadata_dirs'],
-            $settings['dev_mode'],
-            null,
-            $cache
-        );
-
-        return EntityManager::create($settings['connection'], $config);
-    },
+    EntityManager::class => DI\factory(function(ContainerInterface $container): EntityManagerInterface {
+          return EntityManagerFactory::create($container);
+    }),
 ];
