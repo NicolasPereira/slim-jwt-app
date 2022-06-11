@@ -45,9 +45,5 @@ return [
 
     BasePathMiddleware::class => function (ContainerInterface $container) {
         return new BasePathMiddleware($container->get(App::class));
-    },
-
-    EntityManager::class => DI\factory(function(ContainerInterface $container): EntityManagerInterface {
-          return EntityManagerFactory::create($container);
-    }),
+    }
 ];
