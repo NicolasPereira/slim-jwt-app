@@ -59,6 +59,6 @@ return [
             $cache
         );
 
-        return EntityManager::create($settings['db']['connection'], $config);
+        return EntityManager::create($settings['connection'], $config);
     },
 ];
