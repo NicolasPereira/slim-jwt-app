@@ -37,7 +37,7 @@ $settings['db'] = [
 
     // Path where Doctrine will cache the processed metadata
     // when 'dev_mode' is false.
-    'cache_dir' => __DIR__ . '/var/doctrine',
+    'cache_dir' => __DIR__ . '../app/var/doctrine',
 
     // List of paths where Doctrine will search for metadata.
     // Metadata can be either YML/XML files or PHP classes annotated
