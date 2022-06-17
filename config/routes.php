@@ -1,6 +1,7 @@
 <?php
 
 use App\Action\HomeAction;
+use App\Action\UserCreateAction;
 use Slim\App;
 
 return function (App $app) {
@@ -8,5 +9,6 @@ return function (App $app) {
     $app->get('/info', function () {
        phpinfo();
     });
+    $app->post('/users', UserCreateAction::class);
 
 };
