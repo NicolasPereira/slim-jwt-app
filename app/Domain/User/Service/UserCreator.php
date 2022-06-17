@@ -4,32 +4,40 @@ declare(strict_types=1);
 namespace App\Domain\User\Service;
 
 
+use App\Domain\User\Repository\UserCreatorRepository;
 use App\Exception\ValidationException;
 
 final class UserCreator
 {
-    public function __construct()
+    public function __construct(private UserCreatorRepository $repository)
     {
     }
 
+    /**
+     * @throws \Doctrine\ORM\OptimisticLockException
+     * @throws \Doctrine\ORM\Exception\ORMException
+     * @throws \Exception
+     */
     public function createUser(array $data): int
     {
         $this->validateUser($data);
-        //ainda falta criar a persistencia
-        //$userId = $this->repository->save($data);
-        //return $userId;
-
-        return 0;
+        return $this->repository->insert($data);
     }
 
-    private function validateUser(): void
+    /**
+     * @throws \Exception
+     */
+    private function validateUser($data): void
     {
-        $errors = [];
+        $errors = null;
 
-        if (empty($data['username'])) {
-            $errors['username'] = 'Input required';
+        if (empty($data['name'])) {
+            $errors['name'] = 'Input required';
         }
 
+        if (empty($data['password'])) {
+            $errors['password'] = 'Input required';
+        }
         if (empty($data['email'])) {
             $errors['email'] = 'Input required';
         } elseif (filter_var($data['email'], FILTER_VALIDATE_EMAIL) === false) {
