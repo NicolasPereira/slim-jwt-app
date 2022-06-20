@@ -21,6 +21,7 @@ final class UserCreator
     public function createUser(array $data): int
     {
         $this->validateUser($data);
+        $data['password'] = $this->hashPassword($data['password']);
         return $this->repository->insert($data);
     }
 
@@ -47,5 +48,9 @@ final class UserCreator
         if ($errors) {
             throw new ValidationException('Please check your input', $errors, 422);
         }
+    }
+    private function hashPassword(string $password) : string
+    {
+        return password_hash($password, PASSWORD_ARGON2I);
     }
 }
