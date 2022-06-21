@@ -1,9 +1,9 @@
 <?php
 namespace App\Domain\User\Repository;
 
-use App\Domain\User\DTO\CreateUserDTO;
+use App\Domain\User\User;
 
 interface UserCreatorRepository
 {
-    public function insert(CreateUserDTO $userDTO): int;
+    public function insert(User $user): int;
 }
