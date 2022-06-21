@@ -17,7 +17,7 @@ final class UserCreateAction
         ServerRequestInterface $request,
         ResponseInterface $response
     ): ResponseInterface{
-       $data = (array)json_decode($request->getBody());
+       $data = json_decode($request->getBody(), true);
        $createUserDTO = CreateUserDTO::create($data);
        $userId = $this->userCreator->createUser($createUserDTO);
        $result = [
