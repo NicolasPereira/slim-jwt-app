@@ -2,6 +2,7 @@
 
 namespace App\Action;
 
+use App\Domain\User\DTO\CreateUserDTO;
 use App\Domain\User\Service\UserCreator;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -17,7 +18,8 @@ final class UserCreateAction
         ResponseInterface $response
     ): ResponseInterface{
        $data = (array)json_decode($request->getBody());
-       $userId = $this->userCreator->createUser($data);
+       $createUserDTO = CreateUserDTO::create($data);
+       $userId = $this->userCreator->createUser($createUserDTO);
        $result = [
            'userId' => $userId
        ];
