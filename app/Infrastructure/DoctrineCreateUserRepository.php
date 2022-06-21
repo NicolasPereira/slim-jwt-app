@@ -1,6 +1,7 @@
 <?php
 namespace App\Infrastructure;
 
+use App\Domain\User\DTO\CreateUserDTO;
 use App\Domain\User\Repository\UserCreatorRepository;
 use App\Domain\User\User;
 use Doctrine\ORM\EntityManager;
@@ -17,9 +18,9 @@ class DoctrineCreateUserRepository implements UserCreatorRepository
      * @throws OptimisticLockException
      * @throws ORMException
      */
-    public function insert(array $user): int
+    public function insert(CreateUserDTO $userDTO): int
     {
-        $userCreate = new User($user['name'], $user['email'], $user['password']);
+        $userCreate = new User($userDTO->name, $userDTO->email, $userDTO->password);
         $this->em->persist($userCreate);
         $this->em->flush();
         return $userCreate->id;

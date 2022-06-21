@@ -25,7 +25,7 @@ final class User
     {
         $this->name = $name;
         $this->email = $email;
-        $this->password = $password;
+        $this->hashPassword($password);
     }
 
     /**
@@ -42,5 +42,10 @@ final class User
     public function setPassword(string $password): void
     {
         $this->password = $password;
+    }
+
+    private function hashPassword(string $password) : void
+    {
+        $this->setPassword(password_hash($password, PASSWORD_ARGON2I));
     }
 }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Domain\User\Service;
 
 
+use App\Domain\User\DTO\CreateUserDTO;
 use App\Domain\User\Repository\UserCreatorRepository;
 use App\Exception\ValidationException;
 
@@ -18,39 +19,33 @@ final class UserCreator
      * @throws \Doctrine\ORM\Exception\ORMException
      * @throws \Exception
      */
-    public function createUser(array $data): int
+    public function createUser(CreateUserDTO $userDTO): int
     {
-        $this->validateUser($data);
-        $data['password'] = $this->hashPassword($data['password']);
-        return $this->repository->insert($data);
+        $this->validateUser($userDTO);
+        return $this->repository->insert($userDTO);
     }
 
     /**
      * @throws \Exception
      */
-    private function validateUser($data): void
+    private function validateUser(CreateUserDTO $userDTO): void
     {
         $errors = null;
 
-        if (empty($data['name'])) {
+        if (empty($userDTO->name)) {
             $errors['name'] = 'Input required';
         }
 
-        if (empty($data['password'])) {
+        if (empty($userDTO->password)) {
             $errors['password'] = 'Input required';
         }
-        if (empty($data['email'])) {
+        if (is_null($userDTO->email)) {
             $errors['email'] = 'Input required';
-        } elseif (filter_var($data['email'], FILTER_VALIDATE_EMAIL) === false) {
+        } elseif (filter_var($userDTO->email, FILTER_VALIDATE_EMAIL) === false) {
             $errors['email'] = 'Invalid email address';
         }
-
         if ($errors) {
             throw new ValidationException('Please check your input', $errors, 422);
         }
-    }
-    private function hashPassword(string $password) : string
-    {
-        return password_hash($password, PASSWORD_ARGON2I);
     }
 }
