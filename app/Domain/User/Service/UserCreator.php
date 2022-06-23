@@ -6,6 +6,7 @@ namespace App\Domain\User\Service;
 
 use App\Domain\User\DTO\CreateUserDTO;
 use App\Domain\User\Repository\UserCreatorRepository;
+use App\Domain\User\User;
 use App\Exception\ValidationException;
 
 final class UserCreator
@@ -22,7 +23,8 @@ final class UserCreator
     public function createUser(CreateUserDTO $userDTO): int
     {
         $this->validateUser($userDTO);
-        return $this->repository->insert($userDTO);
+        $user = new User($userDTO->name, $userDTO->email, $userDTO->password);
+        return $this->repository->insert($user);
     }
 
     /**

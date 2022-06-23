@@ -18,11 +18,10 @@ class DoctrineCreateUserRepository implements UserCreatorRepository
      * @throws OptimisticLockException
      * @throws ORMException
      */
-    public function insert(CreateUserDTO $userDTO): int
+    public function insert(User $user): int
     {
-        $userCreate = new User($userDTO->name, $userDTO->email, $userDTO->password);
-        $this->em->persist($userCreate);
+        $this->em->persist($user);
         $this->em->flush();
-        return $userCreate->id;
+        return $user->id;
     }
 }
