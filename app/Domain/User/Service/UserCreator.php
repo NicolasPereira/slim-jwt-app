@@ -5,13 +5,13 @@ namespace App\Domain\User\Service;
 
 
 use App\Domain\User\DTO\CreateUserDTO;
-use App\Domain\User\Repository\UserCreatorRepository;
+use App\Domain\User\Repository\UserRepository;
 use App\Domain\User\User;
 use App\Exception\ValidationException;
 
 final class UserCreator
 {
-    public function __construct(private UserCreatorRepository $repository)
+    public function __construct(private UserRepository $repository)
     {
     }
 
