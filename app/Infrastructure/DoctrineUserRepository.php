@@ -1,14 +1,13 @@
 <?php
 namespace App\Infrastructure;
 
-use App\Domain\User\DTO\CreateUserDTO;
-use App\Domain\User\Repository\UserCreatorRepository;
+use App\Domain\User\Repository\UserRepository;
 use App\Domain\User\User;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Exception\ORMException;
 use Doctrine\ORM\OptimisticLockException;
 
-class DoctrineCreateUserRepository implements UserCreatorRepository
+class DoctrineUserRepository implements UserRepository
 {
     public function __construct(private EntityManager $em)
     {
@@ -23,5 +22,10 @@ class DoctrineCreateUserRepository implements UserCreatorRepository
         $this->em->persist($user);
         $this->em->flush();
         return $user->id;
+    }
+
+    public function findBy(string $property, string $valueProperty): User | null
+    {
+        return $this->em->getRepository(User::class)->findOneBy(array($property => $valueProperty));
     }
 }
