@@ -48,4 +48,9 @@ final class User
     {
         $this->setPassword(password_hash($password, PASSWORD_ARGON2I));
     }
+
+    public function validatePassword(string $password): bool
+    {
+       return password_verify($password, $this->password);
+    }
 }
