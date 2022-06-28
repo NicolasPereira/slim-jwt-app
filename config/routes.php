@@ -12,5 +12,4 @@ return function (App $app) {
     });
     $app->post('/users', UserCreateAction::class);
     $app->post('/login', LoginAction::class);
-
 };
