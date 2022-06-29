@@ -7,5 +7,5 @@ interface UserRepositoryContract
 {
     public function insert(User $user): int;
 
-    public function findBy(string $property, string $valueProperty): User | null;
+    public function findBy(string $property, string $valueProperty): ?User;
 }

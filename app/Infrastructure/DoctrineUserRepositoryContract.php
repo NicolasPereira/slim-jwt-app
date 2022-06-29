@@ -24,7 +24,7 @@ class DoctrineUserRepositoryContract implements UserRepositoryContract
         return $user->id;
     }
 
-    public function findBy(string $property, string $valueProperty): User | null
+    public function findBy(string $property, string $valueProperty): ?User
     {
         return $this->em->getRepository(User::class)->findOneBy(array($property => $valueProperty));
     }
