@@ -1,6 +1,7 @@
 <?php
 
 use App\Action\HomeAction;
+use App\Action\LoginAction;
 use App\Action\UserCreateAction;
 use Slim\App;
 
@@ -10,5 +11,5 @@ return function (App $app) {
        phpinfo();
     });
     $app->post('/users', UserCreateAction::class);
-
+    $app->post('/login', LoginAction::class);
 };

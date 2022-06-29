@@ -3,6 +3,7 @@
         "doctrine/annotations": "^1.13",
         "doctrine/migrations": "^3.5",
         "doctrine/orm": "*",
+        "firebase/php-jwt": "^6.2",
         "php-di/php-di": "^6.4",
         "selective/basepath": "^2.1",
         "slim/psr7": "^1.5",
