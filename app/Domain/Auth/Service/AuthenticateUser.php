@@ -4,14 +4,14 @@ declare(strict_types=1);
 namespace App\Domain\Auth\Service;
 
 use App\Domain\Auth\DTO\UserLoginDTO;
-use App\Domain\User\Repository\UserRepository;
+use App\Domain\User\Repository\UserRepositoryContract;
 use App\Domain\User\User;
 use Firebase\JWT\JWT;
 
 class AuthenticateUser
 {
 
-    public function __construct(private UserRepository $repository)
+    public function __construct(private UserRepositoryContract $repository)
     {
     }
 

@@ -1,7 +1,7 @@
 <?php
 
-use App\Domain\User\Repository\UserRepository;
-use App\Infrastructure\DoctrineUserRepository;
+use App\Domain\User\Repository\UserRepositoryContract;
+use App\Infrastructure\DoctrineUserRepositoryContract;
 use App\Infrastructure\Factory\EntityManagerFactory;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
@@ -11,5 +11,5 @@ return [
     EntityManager::class => DI\factory(function(ContainerInterface $container): EntityManagerInterface {
         return EntityManagerFactory::create($container);
     }),
-   UserRepository::class => \DI\autowire(DoctrineUserRepository::class)
+   UserRepositoryContract::class => \DI\autowire(DoctrineUserRepositoryContract::class)
 ];

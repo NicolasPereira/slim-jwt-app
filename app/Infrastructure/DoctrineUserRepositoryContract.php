@@ -1,13 +1,13 @@
 <?php
 namespace App\Infrastructure;
 
-use App\Domain\User\Repository\UserRepository;
+use App\Domain\User\Repository\UserRepositoryContract;
 use App\Domain\User\User;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Exception\ORMException;
 use Doctrine\ORM\OptimisticLockException;
 
-class DoctrineUserRepository implements UserRepository
+class DoctrineUserRepositoryContract implements UserRepositoryContract
 {
     public function __construct(private EntityManager $em)
     {

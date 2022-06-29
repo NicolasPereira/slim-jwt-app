@@ -3,7 +3,7 @@ namespace App\Domain\User\Repository;
 
 use App\Domain\User\User;
 
-interface UserRepository
+interface UserRepositoryContract
 {
     public function insert(User $user): int;
 
