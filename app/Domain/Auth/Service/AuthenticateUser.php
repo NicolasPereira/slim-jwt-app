@@ -10,7 +10,6 @@ use Firebase\JWT\JWT;
 
 class AuthenticateUser
 {
-
     public function __construct(private UserRepositoryContract $repository)
     {
     }
