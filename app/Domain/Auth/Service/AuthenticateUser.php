@@ -38,8 +38,8 @@ class AuthenticateUser
            'login_at' =>  date("Y-m-d H:i:s"),
         ],
            //TODO melhorar essa chave de encriptação, utilizar o esquema de .env pra armazenar essa key
-           "minha-chave-secreta",
-           "HS256");
+           'minha-chave-secreta',
+           'HS256');
     }
 
 }
