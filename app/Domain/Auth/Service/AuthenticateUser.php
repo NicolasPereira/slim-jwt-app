@@ -25,9 +25,10 @@ class AuthenticateUser
         if (!$user->validatePassword($userLoginDTO->password)) {
             throw new \Exception('Login ou senha incorretos', 422);
         }
-        return $this->createToken($user);
 
+        return $this->createToken($user);
     }
+
     private function createToken(User $user)
     {
        return JWT::encode([
