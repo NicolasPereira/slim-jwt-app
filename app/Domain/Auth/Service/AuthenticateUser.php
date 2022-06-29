@@ -23,7 +23,7 @@ class AuthenticateUser
         }
 
         if (!$user->validatePassword($userLoginDTO->password)) {
-            throw new \Exception('Login ou senhas incorretos', 422);
+            throw new \Exception('Login ou senha incorretos', 422);
         }
         return $this->createToken($user);
 
