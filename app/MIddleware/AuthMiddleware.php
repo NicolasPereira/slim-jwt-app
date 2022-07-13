@@ -12,8 +12,7 @@ use Psr\Http\Server\RequestHandlerInterface;
 class AuthMiddleware implements MiddlewareInterface
 {
     public function __construct(
-        private ValidateAuthenticateUser $validateUser,
-        private ResponseInterface $response
+        private ValidateAuthenticateUser $validateUser
     ){
     }
 
@@ -21,11 +20,16 @@ class AuthMiddleware implements MiddlewareInterface
     {
         $token = $request->getHeader('Authorization');
         $token = str_replace('Bearer ', '', $token);
-        $userId = $this->decodeToken($token[0]);
-        if($userId) {
-            $request->withAddedHeader('userId', $userId);
-            return $handler->handle($request);
+        try {
+            $userId = $this->decodeToken($token[0]);
+            $newRequest = $request->withHeader('userId', $userId);
+            return $handler->handle($newRequest);
+
+        } catch (\Exception $e) {
+            throw new \Exception('Usuário não autenticado', 404);
         }
+
+        /*
         $result = [
             'message' => 'Usuário não autenticado',
         ];
@@ -34,6 +38,7 @@ class AuthMiddleware implements MiddlewareInterface
         return $this->response
             ->withHeader('Content-Type', 'application/json')
             ->withStatus(200);
+        */
     }
 
     private function decodeToken(string $token): ?int
