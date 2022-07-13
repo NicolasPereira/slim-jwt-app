@@ -1,10 +1,5 @@
 <?php
 
-use App\infrastructure\Factory\EntityManagerFactory;
-use Doctrine\Common\Cache\Psr6\DoctrineProvider;
-use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\Tools\Setup;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Selective\BasePath\BasePathMiddleware;
@@ -12,8 +7,6 @@ use Slim\App;
 use Slim\Factory\AppFactory;
 use Slim\Factory\Psr17\Psr17Factory;
 use Slim\Middleware\ErrorMiddleware;
-use Symfony\Component\Cache\Adapter\ArrayAdapter;
-use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 
 return [
     'settings' => function () {
