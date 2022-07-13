@@ -3,12 +3,13 @@
 namespace App\Domain\Auth\Service;
 
 use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 
 class ValidateAuthenticateUser
 {
-    public function __invoke(string $hash): bool
+    public function __invoke(string $hash): ?int
     {
-        $user = JWT::decode($hash, 'minha-chave-secreta');
-        return (is_object($user));
+        $user = JWT::decode($hash, new Key('minha-chave-secreta', 'HS256'));
+        return ($user->id);
     }
 }
