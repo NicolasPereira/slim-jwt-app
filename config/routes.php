@@ -3,10 +3,13 @@
 use App\Action\HomeAction;
 use App\Action\LoginAction;
 use App\Action\UserCreateAction;
+use App\Middleware\AuthMiddleware;
 use Slim\App;
 
 return function (App $app) {
-    $app->get('/', HomeAction::class)->setName('home');
+    $app->post('/', HomeAction::class)
+            ->setName('home')
+            ->add(AuthMiddleware::class);
     $app->get('/info', function () {
        phpinfo();
     });
