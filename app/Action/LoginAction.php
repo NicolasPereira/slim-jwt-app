@@ -19,7 +19,7 @@ class LoginAction
         ResponseInterface $response
     ): ResponseInterface
     {
-        $user = json_decode($request->getBody(), true);
+        $user = json_decode($request->getBody()->getContents(), true);
         $userLoginDTO = UserLoginDTO::create($user);
         $auth = $this->authenticateUser->validateUser($userLoginDTO);
         $result = [
