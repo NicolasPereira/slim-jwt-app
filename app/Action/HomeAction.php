@@ -11,7 +11,8 @@ final class HomeAction
         ServerRequestInterface $request,
         ResponseInterface $response
     ): ResponseInterface {
-        $result = ['message' => 'Hello World'];
+        $id = $request->getHeader('userId');
+        $result = ['message' => "Hello World {$id}"];
 
         $response->getBody()->write(json_encode($result));
 
