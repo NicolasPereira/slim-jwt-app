@@ -33,6 +33,14 @@ Essas são as atividades necessárias para cumprir o desafio
 
 [ ] Conseguir 100% de coverage
 
+[ ] Implementar Prometheus para Métricas
+
+[ ] Implementar Jaeger para Trace
+
+[ ] Implementar alguma ferramenta de log
+
+[ ] Implementar Grafana
+
 [ ] (Opcional) - Sincronizar projeto com SonarQube
 
 [ ] Deploy no heroku ou AWS ou Azure. 
